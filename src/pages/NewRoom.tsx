@@ -6,8 +6,11 @@ import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
 
 import '../styles/auth.scss';
+// import { useAuth } from '../context/AuthContext';
 
 export function NewRoom() {
+  // const { user } = useAuth();
+
   return(
     <div id="page-auth">
       <aside>
