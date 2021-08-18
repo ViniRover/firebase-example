@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
@@ -11,17 +11,46 @@ import logoImg from '../assets/images/logo.svg';
 import deleteImg from '../assets/images/delete.svg';
 
 import '../styles/room.scss';
+import { useAuth } from '../hooks/useAuth';
 
 interface RoomParams {
   id: string;
 }
 
 export function AdminRoom() {
+  const { user } = useAuth();
   const params = useParams<RoomParams>();
   const roomId = params.id;
   const { questions, title } = useRoom(roomId);
+  const history = useHistory();
+
+  async function handleEndRoom() {
+    const authorId = await database.ref(`rooms/${roomId}`).get().then(room => {
+      return room.val().authorId;
+    });
+
+    if(authorId !== user?.id) {
+      alert('You do not have permission to end this room');
+      return;
+    }
+    
+    database.ref(`rooms/${roomId}`).update({
+      endedAt: new Date(),
+    });
+
+    history.push('/');
+  }
 
   async function handleDeleteQuestion(questionId: string) {
+    const authorId = await database.ref(`rooms/${roomId}`).get().then(room => {
+      return room.val().authorId;
+    });
+
+    if(authorId !== user?.id) {
+      alert('You do not have permission to delete this question');
+      return;
+    }
+
     if(window.confirm('Do you wish to delete this question?')) {
       await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
     }
@@ -34,7 +63,7 @@ export function AdminRoom() {
           <img src={logoImg} alt="Letmeask" />
           <div>
             <RoomCode code={roomId} />
-            <Button isOutlined>End discussion</Button>
+            <Button onClick={handleEndRoom} isOutlined>End discussion</Button>
           </div>
         </div>
       </header>
