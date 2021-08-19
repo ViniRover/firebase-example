@@ -6,7 +6,7 @@
 
 ## Technologies 
 
-This project was developed using this techlogies:
+This project was developed using this technologies:
 
 - [React](https://reactjs.org)
 - [Firebase](https://firebase.google.com/)
