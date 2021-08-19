@@ -45,7 +45,3 @@ Remember that is necessary to create a Firebase account at [Firebase](https://fi
 
 ![Image of user room](https://github.com/ViniRover/firebase-example/blob/main/Letmeask/Screenshot%20from%202021-08-19%2011-15-14.png)
 
-## License
-
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
-
