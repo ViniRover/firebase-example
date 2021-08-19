@@ -1,19 +1,21 @@
 import { useHistory, useParams } from 'react-router-dom';
 
-import { useRoom } from '../hooks/useRoom';
-import { database } from '../services/firebase';
+import { useRoom } from '../../hooks/useRoom';
+import { database } from '../../services/firebase';
+import { useAuth } from '../../hooks/useAuth';
 
-import { Button } from '../components/Button';
-import { RoomCode } from '../components/RoomCode';
-import { Question } from '../components/Question';
+import { Button } from '../../components/Button';
+import { RoomCode } from '../../components/RoomCode';
+import { Question } from '../../components/Question';
 
-import logoImg from '../assets/images/logo.svg';
-import deleteImg from '../assets/images/delete.svg';
-import checkImg from '../assets/images/check.svg';
-import answerImg from '../assets/images/answer.svg';
+import logoImg from '../../assets/images/logo.svg';
+import deleteImg from '../../assets/images/delete.svg';
+import checkImg from '../../assets/images/check.svg';
+import answerImg from '../../assets/images/answer.svg';
 
-import '../styles/room.scss';
-import { useAuth } from '../hooks/useAuth';
+import { } from './styles';
+
+import '../../styles/room.scss';
 
 interface RoomParams {
   id: string;
